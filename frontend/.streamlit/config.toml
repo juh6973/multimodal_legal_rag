@@ -1,0 +1,29 @@
+[theme]
+primaryColor = "#E694FF"
+backgroundColor = "#00172B"
+secondaryBackgroundColor = "#0083B8"
+textColor = "#DCDCDC"
+
+[server]
+
+# List of folders that should not be watched for changes. Relative paths will be taken as relative to the current working directory.
+# Example: ['/home/user1/env', 'relative/path/to/folder']
+# Default: []
+folderWatchBlacklist = ['']
+
+
+# If false, will attempt to open a browser window on start.
+# Default: false unless (1) we are on a Linux box where DISPLAY is unset, or (2) server.liveSave is set.
+headless = true
+
+# Automatically rerun script when the file is modified on disk.
+# Default: false
+runOnSave = true
+
+# The port where the server will listen for client and browser connections.
+# Default: 8501
+port = 8501
+
+
+[browser]
+gatherUsageStats = false

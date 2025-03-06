@@ -1,0 +1,8 @@
+fastapi
+pydantic
+#langchain
+#transformers
+#torch
+uvicorn
+dotenv
+requests
