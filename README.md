@@ -24,7 +24,7 @@ docker compose build
 docker compose up
 ```
 
-*NOTE: if on MacOs, run `open -a Docker` to ensure that docker is running.*
+*NOTE: if on MacOS, run `open -a Docker` to ensure that docker is running.*
 
 ## Project Architecture
 [Architecture diagram](docs/project_architecture.png)
