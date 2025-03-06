@@ -27,4 +27,4 @@ docker compose up
 *NOTE: if on MacOS, run `open -a Docker` to ensure that docker is running.*
 
 ## Project Architecture
-[Architecture diagram](docs/project_architecture.png)
+![Architecture diagram](docs/project_architecture.png)
