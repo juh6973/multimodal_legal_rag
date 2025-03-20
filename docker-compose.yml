@@ -36,6 +36,8 @@ services:
       - default-net
     volumes:
       - chroma-db:/chroma/database
+    env_file:
+    - .env
 
 networks:
   default-net:
