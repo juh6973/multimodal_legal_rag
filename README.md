@@ -1,18 +1,18 @@
-# multimodal_legal_rag
-Capstone project for comp.cs.530 (Fine-tuning LLMs)
+# Multi-Agent Legal RAG for Multimodal Input
+*Capstone project for comp.cs.530 (Fine-tuning LLMs)*
+
+## Project Overview
+
+This repository contains a **multimodal legal RAG (Retrieval-Augmented Generation) system** designed to handle audio, text, and image-based legal documents. The project leverages vector databases to store and index these diverse data sources for efficient retrieval. A **multi-agent workflow** orchestrates the process:
+
+- A **Query Optimizer** refines user queries to improve retrieval precision.
+- A **Formatter** synthesizes the retrieved material into coherent legal arguments or responses.
+
+By unifying specialized models and databases, this system delivers context-rich, accurate, and well-structured legal information through a user-friendly interface.
 
 
-## Depencies
-
-Install docker and docker compose plugin, tutorial and commands:
-
-https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
-
-After installation, You need to add permissions with
-```bash
-sudo usermod -aG docker $USER
-newgrp docker
-```
+## Project Architecture
+![Architecture diagram](docs/project_architecture.png)
 
 ## Data
 ### Datasets
@@ -58,16 +58,27 @@ This selection allows effective retrieval of authoritative legal references, com
 - The text is stemmed and the stopwords are removed for before calculating embeddings for vector database. For more information, see `text_embedding_pipeline.ipynb`.
 - All text pipelines remove unnecessary characters from the text, such as special characters, HTML tags, extra whitespace, and formatting artifacts, ensuring clean and consistent input for downstream processing.
 
-## Usage
+## Dependencies
 
-Run using commands
+To run this project, you need **Docker** and the **Docker Compose** plugin. Follow the official [Docker documentation](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository) for step-by-step installation instructions on Ubuntu.
+
+After installing Docker, grant your user account the necessary permissions:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+This ensures you can run Docker commands without elevated privileges.
+
+## How to Run?
+
+From the project's root directory, run the following commands to build and launch the containers:
 
 ```bash
 docker compose build
 docker compose up
 ```
-
-*NOTE: if on MacOS, run `open -a Docker` to ensure that docker is running.*
-
-## Project Architecture
-![Architecture diagram](docs/project_architecture.png)
+*Note for macOS users: Ensure Docker is running by executing*:
+```bash
+open -a Docker
+```
