@@ -26,7 +26,23 @@ services:
     env_file:
     - .env
 
+  chroma-db:
+    build:
+      context: ./chroma
+    container_name: chroma-db
+    ports:
+      - 5000:5000
+    networks:
+      - default-net
+    volumes:
+      - chroma-db:/chroma/database
+
 networks:
   default-net:
     driver: bridge
+
+volumes:
+  chroma-db:
+    driver: local
+ 
 
