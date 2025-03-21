@@ -170,5 +170,9 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 
+# Data files
+*.csv
+*.pdf
+
 # Chromadb
 database/
