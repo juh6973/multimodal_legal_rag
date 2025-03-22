@@ -7,10 +7,17 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+      - ~/.cache/huggingface:/root/.cache/huggingface  # Map local cache to container
     networks:
       - default-net
     env_file:
     - .env
+    deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                capabilities: [gpu]
 
   frontend:
     build:

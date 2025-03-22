@@ -48,7 +48,7 @@ def generate_message():
                 body = format_input()
 
                 # Send request to backend
-                endpoint = "api/test"
+                endpoint = "api/generate"
                 response = send_request(endpoint, data={"message": st.session_state["prompt"]})
 
             # Display response
