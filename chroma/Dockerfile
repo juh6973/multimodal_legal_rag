@@ -1,5 +1,10 @@
 FROM ghcr.io/chroma-core/chroma:latest
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git wget inetutils-ping && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY requirements.txt .
 RUN pip install --upgrade pip
 
@@ -10,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set environment variable to change the port
-ENV CHROMA_SERVER_HTTP_PORT=5000
+#ENV CHROMA_SERVER_HTTP_PORT=5000
 
 # Run the application
-CMD ["uvicorn", "chromadb.app:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
+CMD ["--host", "0.0.0.0", "--port", "8000", "--reload"]

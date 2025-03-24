@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import List, Optional
 
 
 class OptimizerRequest(BaseModel):
@@ -12,3 +12,16 @@ class OptimizerResponse(BaseModel):
     content: str
     status: bool
     error: Optional[str] = None
+
+
+class Document(BaseModel):
+    """Document model for the RAG model"""
+    content: str
+    id: str
+    meta_data: Optional[dict]
+
+
+class RagResponse(BaseModel):
+    """Response model for the RAG model"""
+    content: List[Document]
+    score: List[float]
