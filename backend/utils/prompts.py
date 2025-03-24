@@ -1,5 +1,13 @@
 
 
+SYSTEM_MESSAGE = """You are helpful legal assistant. You are given context for answering legal domain questions.
+    Be sure to provide answers based on the context provided. If you are unsure about the answer, you can mention that in your response.
+
+    You have following Legal Cases as context:
+    {legal_context}
+    """
+
+
 FORMATTER_PROMPT_TEST = """
         You are helpful legal assistant. You are asked to provide legal arguments for a given situation.
         You are given context from Legal Cases and your task is to use this information to provide a legal arguments.

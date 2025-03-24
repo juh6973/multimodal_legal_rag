@@ -45,7 +45,7 @@ def format_response(user_query:str, legal_context:str) -> str:
 
         # Invoke the chain
         start_time = time.time()
-        response = chain.invoke({"legal_contet": legal_context, "query": user_query})
+        response = chain.invoke({"legal_context": legal_context, "query": user_query})
         end_time = time.time() - start_time
 
         if os.getenv("DEBUG"):
@@ -54,8 +54,8 @@ def format_response(user_query:str, legal_context:str) -> str:
 
 
         # Parse the response if using a DeepSeek model
-        #if "deepseek" in model_name.lower():
-        #    response = parse_deepseek(response)
+        if "deepseek" in model_name.lower():
+            response = parse_deepseek(response)
 
         return response
 
