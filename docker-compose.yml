@@ -4,10 +4,10 @@ services:
       context: ./backend
     container_name: backend
     ports:
-      - "8000:8000"
+      - "5000:5000"
     volumes:
       - ./backend:/app
-      - ~/.cache/huggingface:/root/.cache/huggingface  # Map local cache to container
+      - ~/.cache/huggingface:/root/.cache/huggingface  # Mount local cache to container
     networks:
       - default-net
     env_file:
@@ -38,11 +38,11 @@ services:
       context: ./chroma
     container_name: chroma-db
     ports:
-      - 5000:5000
+      - 8000:8000
     networks:
       - default-net
     volumes:
-      - chroma-db:/chroma/database
+      - chroma-data:/chroma/database
     env_file:
     - .env
 
@@ -51,7 +51,7 @@ networks:
     driver: bridge
 
 volumes:
-  chroma-db:
+  chroma-data:
     driver: local
  
 
