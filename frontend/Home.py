@@ -1,5 +1,5 @@
 import streamlit as st
-from src.utils import send_request, convert_image
+from src.utils import send_request
 
 
 def chat_history():
@@ -9,19 +9,10 @@ def chat_history():
 
 def format_input() -> dict:
     return {
-        "messages": st.session_state.messages,
+        "prompt": st.session_state["prompt"],
+        "message_history": st.session_state["messages"],
+        "context": st.session_state["context"],
         }
-
-
-def input_image() -> str:
-    uploaded_file = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
-
-    if uploaded_file is not None:
-        try:
-            st.session_state["image"] = convert_image(uploaded_file)
-            st.session_state["vision"] = True
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
 
 
 def generate_message():
@@ -44,17 +35,18 @@ def generate_message():
             with st.spinner("Generating response..."):
 
                 # Add user message to chat history and format input
-                st.session_state["messages"].append({"role": "user", "content": st.session_state["prompt"]})
                 body = format_input()
 
                 # Send request to backend
-                endpoint = "api/generate"
-                response = send_request(endpoint, data={"message": st.session_state["prompt"]})
+                response = send_request(path="api/generate", data=body)
 
             # Display response
             if response["status_code"] == 200:
                 st.chat_message("assistant").write(response["content"])
+                # Update chat history
+                st.session_state["messages"].append({"role": "user", "content": st.session_state["prompt"]})
                 st.session_state["messages"].append({"role": "assistant", "content": response["content"]})
+                st.session_state["context"] = response["context"]
 
             # Display error message
             else:
@@ -80,8 +72,9 @@ def main():
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
 
+    if "context" not in st.session_state:
+        st.session_state["context"] = ""
 
-    #input_image()
     generate_message()
 
 
