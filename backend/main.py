@@ -20,7 +20,7 @@ def read_root():
 try:
     client = chromadb.HttpClient(host=os.getenv("CHROMA_HOST"))
     client.delete_collection(os.getenv("CHROMA_MEMORY_COLLECTION"))
-    logger.info("ChromaDB client loaded successfully")
+    logger.info("ChromaDB client loaded successfully, memory cleaned")
 except Exception as e:
     logger.error(f"Error loading ChromaDB client: {e}")
 
