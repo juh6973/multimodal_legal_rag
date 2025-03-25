@@ -14,8 +14,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the application code
 COPY . .
 
-# Set environment variable to change the port
-#ENV CHROMA_SERVER_HTTP_PORT=5000
 
 # Run the application
 CMD ["--host", "0.0.0.0", "--port", "8000", "--reload"]

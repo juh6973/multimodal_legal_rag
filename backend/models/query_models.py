@@ -24,4 +24,4 @@ class Document(BaseModel):
 class RagResponse(BaseModel):
     """Response model for the RAG model"""
     content: List[Document]
-    score: List[float]
+    score: Optional[List[float]] = None
