@@ -11,7 +11,6 @@ def format_input() -> dict:
     return {
         "prompt": st.session_state["prompt"],
         "message_history": st.session_state["messages"],
-        "context": st.session_state["context"],
         }
 
 
@@ -46,7 +45,6 @@ def generate_message():
                 # Update chat history
                 st.session_state["messages"].append({"role": "user", "content": st.session_state["prompt"]})
                 st.session_state["messages"].append({"role": "assistant", "content": response["content"]})
-                st.session_state["context"] = response["context"]
 
             # Display error message
             else:
@@ -71,9 +69,6 @@ def main():
 
     if "messages" not in st.session_state:
         st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
-
-    if "context" not in st.session_state:
-        st.session_state["context"] = ""
 
     generate_message()
 

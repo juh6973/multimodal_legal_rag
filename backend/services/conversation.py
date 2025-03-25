@@ -4,7 +4,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 from utils.prompts import SYSTEM_MESSAGE
 from services.query_optimizer import get_hf_model
-from langchain_huggingface import HuggingFacePipeline
+from services.rag import get_knowledge
 
 
 def format_history(messages: list):
@@ -25,6 +25,9 @@ def chat_model(prompt:str, messages: list, context: str):
     """Chat with the model"""
     # Format the chat history
     history = format_history(messages=messages)
+
+    # Get documents from ChromaDB memory
+    memory = get_knowledge()
 
     # Get the model
     llm = get_hf_model()
