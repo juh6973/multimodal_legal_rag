@@ -33,28 +33,7 @@ FORMATTER_PROMPT_TEST = """
         """
 
 """
----
 
-Here is a sample response to the user's legal situation:
-
-### **Response Format (Example Output)**
-
-#### **Legal Issue:**  
-- Whether Title VII protections apply to employees fired after coming out as transgender.  
-
-#### **Applicable Legal Context:**  
-- *Bostock v. Clayton County (2020)*: The Supreme Court ruled that discrimination based on gender identity or sexual orientation is a form of sex discrimination under Title VII.  
-- *Title VII of the Civil Rights Act (42 U.S.C. 2000e-2(a)(1))*: Prohibits employment discrimination based on sex, including gender identity.  
-
-#### **Legal Argument:**  
-- Based on *Bostock v. Clayton County (2020)*, firing an employee for coming out as transgender constitutes sex discrimination.  
-- The employer's action may violate **Title VII**, and the affected employee could file a **complaint with the Equal Employment Opportunity Commission (EEOC)**.  
-
-#### **Next Steps:**  
-- The individual may consider **filing a discrimination complaint** under Title VII.  
-- Legal counsel may be necessary if the employer claims a **religious exemption** under *RFRA*. 
-
----
 """
 
 FORMATTER_PROMPT = """
@@ -76,6 +55,28 @@ FORMATTER_PROMPT = """
         4 **Final Recommendation**  
         - Suggest potential **next steps** (e.g., legal avenues available to the user, possible defenses).  
 
+        ---
+
+        Here is a sample response to the user's legal situation:
+
+        ### **Response Format (Example Output)**
+
+        #### **Legal Issue:**  
+        - Whether Title VII protections apply to employees fired after coming out as transgender.  
+
+        #### **Applicable Legal Context:**  
+        - *Bostock v. Clayton County (2020)*: The Supreme Court ruled that discrimination based on gender identity or sexual orientation is a form of sex discrimination under Title VII.  
+        - *Title VII of the Civil Rights Act (42 U.S.C. 2000e-2(a)(1))*: Prohibits employment discrimination based on sex, including gender identity.  
+
+        #### **Legal Argument:**  
+        - Based on *Bostock v. Clayton County (2020)*, firing an employee for coming out as transgender constitutes sex discrimination.  
+        - The employer's action may violate **Title VII**, and the affected employee could file a **complaint with the Equal Employment Opportunity Commission (EEOC)**.  
+
+        #### **Next Steps:**  
+        - The individual may consider **filing a discrimination complaint** under Title VII.  
+        - Legal counsel may be necessary if the employer claims a **religious exemption** under *RFRA*. 
+
+        ---
         
         Be careful not to cite case laws of statutes that are not present in the context. If you are unsure about context of case law or statute, mention that in "### Response".
         Legal arguments should be relevant to the User's Legal Situation.
@@ -100,10 +101,11 @@ OPTIMIZER_PROMPT = """
         **Instructions:**
         1. Identify the core legal issue(s).
         2. Use precise legal terminology.
-        3. Keep the output **concise (max 20 words, 1 sentence)** for retrieval.
+        3. Keep the output **concise (one sentence, max 20 words)** for retrieval.
         4. Format JSON response as following {{"output": }}
 
-        Here is an example of a user scenario and an optimized query:
+        Here is an example of a user scenario and answer:
+        ---
         **User Scenario:** 
         I was working at a company for five years, and recently, they fired me without any warning. 
         I never received any performance warnings or complaints. I believe this was an unfair dismissal. 
@@ -111,7 +113,10 @@ OPTIMIZER_PROMPT = """
 
         **Answer:**
         {{"output": "Legal remedies for wrongful termination without notice under labor laws and case law precedents."}}
-        
+        ---
+
+        Be carefult not to return more than one sentence in correct format.
+
         Now, generate one optimized query for the following scenario:
         **User Scenario:**
         {query}
