@@ -73,9 +73,6 @@ def json_parser(response: str) -> OptimizerResponse:
 
         json_str = json_match.group(0)  # Extract JSON string
 
-        if os.getenv("DEBUG"):
-            print(f"JSON String: {json_str}")
-
         # Parse and validate JSON using Pydantic
         parsed_json = json.loads(json_str)
 
@@ -86,7 +83,7 @@ def json_parser(response: str) -> OptimizerResponse:
         return OptimizerResponse(content=parsed_json["output"], status=True)
 
     except Exception as e:
-        logger.info(f"Error reconstructing JSON: {e}, Please try simplifying the request.")
+        logger.info(f"Error reconstructing JSON: {e}, Continuing with original response")
         return OptimizerResponse(content=response, status=True)
 
 

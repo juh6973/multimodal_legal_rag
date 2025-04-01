@@ -14,7 +14,7 @@ def format_context(documents: RagResponse) -> str:
     """Format the context to a str list for the model"""
     
     # Get the context
-    formatted_context = [f"Case {i}:\nContext: {doc.content}\nMetadata: {doc.meta_data}\n{"-"*10}" for i, doc in enumerate(documents.content)]
+    formatted_context = [f"Context: {doc.content}\nMetadata: {doc.meta_data}\n{"-"*10}" for i, doc in enumerate(documents.content)]
 
     return "\n".join(formatted_context)
 

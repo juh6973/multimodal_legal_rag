@@ -36,7 +36,7 @@ def generate_response(request: RequestMessage):
 
     start_time = time.time()
     logger.info(f"Request received: {request.prompt}")
-    logger.info(f"Messages received: {len(request.message_history)}")
+    logger.info(f"Messages history contains {len(request.message_history)} messages")
     
     # first message runs retrieval and formatting tasks
     if len(request.message_history) == 1:
