@@ -72,6 +72,22 @@ This ensures you can run Docker commands without elevated privileges.
 
 ## How to Run?
 
+### Init vector database
+Init and upload files to vector database by running [chroma/text_embedding_pipeline.ipynb](https://github.com/juh6973/multimodal_legal_rag/blob/main/chroma/text_embedding_pipeline.ipynb).\
+Alternatively, you can download [full dataset](https://drive.google.com/file/d/11xH8KUFjYGM0f_VfYUMzZc-JD1HomwMF/view?usp=drive_link) or [test version](https://drive.google.com/file/d/1v0-aC4SPxhDYlTqKhoxW4RAsDYYltTo-/view?usp=drive_link) (might require renaming, look following instructions). Unzip the folder under chroma folder, path should be /chroma/dataset. 
+
+Test version includes collection named 'test_collection' and it needs to be changed to .env file. Full dataset includes collection named 'full_collection' and does not require changes.
+
+### Hugging Face token
+
+Generate Hugging Face [token](https://huggingface.co/settings/tokens) and insert into .env file to HF_TOKEN. This is needed for the Mistral 7B model.
+
+### Install NVIDIA Container toolkit for gpu support (optional)
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
+### Run commands
+
 From the project's root directory, run the following commands to build and launch the containers:
 
 ```bash
